@@ -14,7 +14,7 @@ def loadDataset(filename, split, training, test):
 			if random.random() < split:
 				training.append(dataset[i])
 			else:
-				test.append(dataset[j])
+				test.append(dataset[i])
 
 
 def EuclidDist(a,b,l):
@@ -59,9 +59,14 @@ def main():
 	print len(train),len(test),len(train)+len(test)
 	predictions = []
 	testdata = []
+	# for i in range(len(train)):
+	# 	print train[i]
+	# for i in range(len(test)):
+	# 	print test[i]
 	for i in range(len(test)):
 		testdata.append(test[i][4])
-		predictions.append(classify(getNeighbors(train,test[i],4)))
+		predictions.append(classify(getNeighbors(train,test[i],10)))
 	print getAccurracy(predictions,testdata)
 
-main()
+if __name__ == "__main__":
+	main()
